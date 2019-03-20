@@ -7,8 +7,8 @@ deployments:
       - apt install -y nodejs
       - pip install setuptools pip --upgrade --force-reinstall
       - cd /code
-      - npm install
     launch_steps:
+      - npm install
       - npm run dist
       - pip install /code
       - mkdir /myproject
