@@ -1,6 +1,7 @@
 deployments:
   default:
     dockerimage: python:latest
+    bogus_field: 123
     build_steps:
       - apt-get update && apt-get install -y libssl-dev libpq-dev git build-essential libfontconfig1 libfontconfig1-dev curl
       - RUN bash -c "curl -sL https://deb.nodesource.com/setup_8.x | bash -"
@@ -19,3 +20,6 @@ deployments:
       - echo "from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.create_superuser('admin', 'admin@myproject.com', 'password')" | python manage.py shell    
       - python manage.py runserver 0.0.0.0:80
     run_options: -v ~/code:/code
+    bad_field2: bla
+    auto_shutdown_by_merge: 123
+    ready_wait: "321"
