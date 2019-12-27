@@ -60,7 +60,6 @@ deployments:
           depends_on_group: app
           scripts:
             - ls -la
-            - echo "test"      
       - Force Timeout:
           scripts:
             - echo "test"
@@ -69,3 +68,13 @@ deployments:
           scripts:
             - echo "test"
             - sleep 99999999         
+      - App 1:
+          group_id: app
+          scripts:
+            - ls -la            
+            - echo "test"
+      - API 1:
+          group_id: api
+          scripts:
+            - ls -la            
+            - echo "test"
