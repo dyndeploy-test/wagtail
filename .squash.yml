@@ -19,3 +19,31 @@ deployments:
       - echo "from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.create_superuser('admin', 'admin@myproject.com', 'password')" | python manage.py shell    
       - python manage.py runserver 0.0.0.0:80
     run_options: -v ~/code:/code
+    pipelines:
+      - Homepage:
+          group_id: app
+          scripts:
+            - pip install tox codecov
+            - echo true
+      - Cart:
+          group_id: app
+          scripts:
+            - sleep 5; ls -la
+            - tox
+      - Inventory:
+          group_id: api
+          depends_on_group: app
+          scripts:
+            - ls -la
+            - echo "test"
+      - eCommerce:
+          group_id: api
+          depends_on_group: app
+          scripts:
+      - App Build:
+          group_id: build
+          scripts:
+            - apt-get update && apt-get install -y libssl-dev libpq-dev git build-essential libfontconfig1 libfontconfig1-dev curl
+            - RUN bash -c "curl -sL https://deb.nodesource.com/setup_8.x | bash -"
+            - apt install -y nodejs
+            - pip install setuptools pip --upgrade --force-reinstall
