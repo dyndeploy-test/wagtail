@@ -63,11 +63,9 @@ deployments:
       - Force Timeout:
           scripts:
             - echo "test"
-            - sleep 99999999
       - Force Timeout long name v2:
           scripts:
             - echo "test"
-            - sleep 99999999         
       - App 1:
           group_id: app
           scripts:
